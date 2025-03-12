@@ -25,7 +25,7 @@ class SnakeTriangle(Snake):
     def id_to_coord(self,pos):
         y=(pos[1]*self.field.size_pixel/2 - self.field.height/2) + self.field.size_pixel/2
         x=(pos[0]*np.sqrt(3)*self.field.size_pixel/2 - self.field.width/2) + np.sqrt(3)*self.field.size_pixel/4
-        if (pos[0]%2==0 and pos[1]%2==0) or (pos[0]%2!=0 and pos[1]%2!=0):
+        if pos[0]%2==pos[1]%2:
             x+=np.sqrt(3)*self.field.size_pixel/12
         else:
             x-=np.sqrt(3)*self.field.size_pixel/12

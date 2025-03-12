@@ -1,6 +1,7 @@
 import turtle
 import os
 import time
+import numpy as np
 
 from classes.snake import Snake
 from classes.snake_hexagon import SnakeHexagon
@@ -8,7 +9,8 @@ from classes.snake_triangle import SnakeTriangle
 from classes.field import Field, FieldHexagon, FieldTriangle
 
 if __name__=='__main__':
-    type_snake='square' #'square', 'hexagon', 'triangle'
+    type_snake='hexagon' #'square', 'hexagon', 'triangle'
+    #type_search and sort - Beta Version
 
     if type_snake=='square':
         map_file='assets/snake12x12.png'
@@ -25,7 +27,8 @@ if __name__=='__main__':
 
     #Draw space
     win=turtle.Screen()
-    win.setup(field.width+50,field.height+50)
+    screen_offset=50
+    win.setup(field.width+screen_offset,field.height+screen_offset)
     win.bgpic(map_file)
     win.title('Snake')
     win.tracer(0)
@@ -33,11 +36,15 @@ if __name__=='__main__':
     my_pen.hideturtle()
     my_pen.up()
 
+    time.sleep(15)
 
+    ### Working
     if 1: # With dodge
         while(1):
             os.system('cls')
             print(snake.field.map.T[:][::-1])
+            px,py=np.where(snake.field.map == -1)
+            print('Goal:',(px[0],py[0]))
             my_pen.clear()
             snake.draw_snake(my_pen)
             win.update()
@@ -48,6 +55,8 @@ if __name__=='__main__':
             #id_movement=snake.calculating_motion_repel()
             snake.update_pos(id_movement)
         turtle.done()
+
+    ### DRAFT
     else: #With searching algorithm (beta version)
         os.system('cls')
         print(snake.field.map.T[:][::-1])

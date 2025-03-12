@@ -36,8 +36,6 @@ if __name__=='__main__':
     my_pen.hideturtle()
     my_pen.up()
 
-    time.sleep(15)
-
     ### Working
     if 1: # With dodge
         while(1):
